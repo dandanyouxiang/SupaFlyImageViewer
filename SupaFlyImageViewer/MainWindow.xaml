@@ -1,0 +1,24 @@
+﻿<Window x:Class="SupaFlyImageViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SupaFly Image Viewer" Height="436" Width="627" WindowState="Maximized" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" 
+        Icon="ImageIcon.png" KeyDown="Grid_KeyDown">
+    <Window.Background>
+        <SolidColorBrush Color="DarkGray" Opacity="0.75" />
+    </Window.Background>
+    <Grid>
+        <Image x:Name="MainImage" Source="SupaFly.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="Image.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Width" From="0" To="800" Duration="0:0:0.25"></DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
+        </Image>
+        <Image Cursor="Hand" Source="CloseIcon.png" HorizontalAlignment="Right" VerticalAlignment="Top" Height="50"  
+               Width="50" Margin="0,10,10,0" MouseLeftButtonUp="Image_MouseLeftButtonUp" />
+    </Grid>
+</Window>

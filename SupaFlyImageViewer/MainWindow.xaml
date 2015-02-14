@@ -1,13 +1,17 @@
 ﻿<Window x:Class="SupaFlyImageViewer.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:SupaFlyImageViewer"
         Title="SupaFly Image Viewer" Height="436" Width="627" WindowState="Maximized" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" 
         Icon="ImageIcon.png" KeyDown="Grid_KeyDown">
     <Window.Background>
         <SolidColorBrush Color="DarkGray" Opacity="0.75" />
     </Window.Background>
     <Grid>
-        <Image x:Name="MainImage" Source="SupaFly.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
+        <Image x:Name="MainImage" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
+            <Image.Source>
+                <BitmapImage UriSource="SupaFly.png"></BitmapImage>
+            </Image.Source>
             <Image.Triggers>
                 <EventTrigger RoutedEvent="Image.Loaded">
                     <BeginStoryboard>

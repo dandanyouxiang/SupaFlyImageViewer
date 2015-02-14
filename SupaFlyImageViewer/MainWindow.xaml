@@ -7,16 +7,26 @@
     <Window.Background>
         <SolidColorBrush Color="DarkGray" Opacity="0.75" />
     </Window.Background>
+    <Window.DataContext>
+        <local:ImageModel />
+    </Window.DataContext>
+    <Window.Resources>
+        <Storyboard x:Key="WidthZoomout">
+            <DoubleAnimation Storyboard.TargetName="MainImage" Storyboard.TargetProperty="Width" From="0" To="{Binding Width}" Duration="0:0:0.5"></DoubleAnimation>
+        </Storyboard>
+    </Window.Resources>
+    <!--<Window.Triggers>
+        <EventTrigger RoutedEvent="Window.MouseDown">
+            <BeginStoryboard Storyboard="{StaticResource WidthZoomout}"></BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>-->
     <Grid>
-        <Image x:Name="MainImage" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
-            <Image.Source>
-                <BitmapImage UriSource="SupaFly.png"></BitmapImage>
-            </Image.Source>
+        <Image Source="{Binding MyPath}" x:Name="MainImage" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
             <Image.Triggers>
                 <EventTrigger RoutedEvent="Image.Loaded">
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="Width" From="0" To="800" Duration="0:0:0.25"></DoubleAnimation>
+                            <DoubleAnimation BeginTime="0:0:1" AccelerationRatio="1" Storyboard.TargetProperty="Width" From="0" To="{Binding Width}" Duration="0:0:0.5"></DoubleAnimation>
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>

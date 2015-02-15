@@ -12,7 +12,7 @@ namespace SupaFlyImageViewerTests
         {
             var blah = new ImageViewerModel();
             blah.PropertyChanged += (s, e) => Assert.AreEqual("Width", e.PropertyName);
-            blah.Width = 50;
+            blah.DisplayedWidth = 50;
         }
     }
 }

@@ -28,9 +28,16 @@ namespace SupaFlyImageViewer
             MainImage.Source = new BitmapImage(uri);
         }
 
-        private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             Close();
+        }
+
+        void ImageLoadedZoomIn_Completed(object sender, EventArgs e)
+        {
+            //var dataContext = (ImageViewerModel)DataContext;
+            //MainImage.Width = dataContext.DisplayedWidth;
+            //ImageLoadStoryboard.Remove(MainImage);
         }
     }
 }

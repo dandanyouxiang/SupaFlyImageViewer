@@ -13,17 +13,18 @@ namespace SupaFlyImageViewer
 {
     public class ImageViewerModel : INotifyPropertyChanged
     {
-        int width;
+        int displayedWidth;
         readonly MainWindowCommand zoomInCommand;
         readonly MainWindowCommand zoomOutCommand;
         readonly MainWindowCommand closeApplicationCommand;
 
         public ImageViewerModel()
         {
-            zoomInCommand = new MainWindowCommand(() => Width += 10);
-            zoomOutCommand = new MainWindowCommand(() => Width -= 10);
+            zoomInCommand = new MainWindowCommand(() => DisplayedWidth += 10);
+            zoomOutCommand = new MainWindowCommand(() => DisplayedWidth -= 10);
             closeApplicationCommand = new MainWindowCommand(() => Application.Current.Shutdown());
-            Width = 800;
+
+            DisplayedWidth = 800;
         }
 
         public string MyPath
@@ -33,12 +34,12 @@ namespace SupaFlyImageViewer
 
 
         // Todo: get actual width of photo. (Need to set a max width depending on monitor size.)
-        public int Width
+        public int DisplayedWidth
         {
-            get { return width; }
+            get { return displayedWidth; }
             set
             {
-                width = value;
+                displayedWidth = value;
                 OnPropertyChanged();
             }
         }

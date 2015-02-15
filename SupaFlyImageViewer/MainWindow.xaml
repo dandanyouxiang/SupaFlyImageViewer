@@ -3,20 +3,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:SupaFlyImageViewer"
         Title="SupaFly Image Viewer" Height="436" Width="627" WindowState="Maximized" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" 
-        Icon="ImageIcon.png" KeyDown="Grid_KeyDown">
+        Icon="ImageIcon.png">
     <Window.Background>
         <SolidColorBrush Color="DarkGray" Opacity="0.75" />
     </Window.Background>
     <Window.DataContext>
-        <local:ImageModel />
+        <local:ImageViewerModel />
     </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Key="Up" Command="{Binding ZoomIn}" />
+        <KeyBinding Key="Down" Command="{Binding ZoomOut}" />
+        <KeyBinding Key="Escape" Command="{Binding CloseApplication}" />
+    </Window.InputBindings>
     <Grid>
         <Image Source="{Binding MyPath}" x:Name="MainImage" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
             <Image.Triggers>
                 <EventTrigger RoutedEvent="Image.Loaded">
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation BeginTime="0:0:1" AccelerationRatio="1" Storyboard.TargetProperty="Width" From="0" To="{Binding Width}" Duration="0:0:0.5"></DoubleAnimation>
+                            <DoubleAnimation BeginTime="0:0:1" AccelerationRatio="1" Storyboard.TargetProperty="Width" From="0" To="{Binding Width}" Duration="0:0:0.5" />
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
@@ -41,5 +46,6 @@
                 </EventTrigger>
             </Image.Triggers>
         </Image>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="300,0,283,10" Content="{Binding Width}" FontFamily="Verdana" FontSize="18" Foreground="White" RenderTransformOrigin="1.023,0.469"></Label>
     </Grid>
 </Window>

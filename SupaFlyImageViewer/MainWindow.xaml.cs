@@ -28,12 +28,6 @@ namespace SupaFlyImageViewer
             MainImage.Source = new BitmapImage(uri);
         }
 
-        private void Grid_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Escape)
-                Close();
-        }
-
         private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             Close();

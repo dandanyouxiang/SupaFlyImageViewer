@@ -2,8 +2,14 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:SupaFlyImageViewer"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
         Title="SupaFly Image Viewer" Height="436" Width="627" WindowState="Maximized" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" 
         Icon="ImageIcon.png">
+    <d:Window.DataContext>
+        <local:DesignTimeImageViewerModel />
+    </d:Window.DataContext>
     <Window.Background>
         <SolidColorBrush Color="DarkGray" Opacity="0.75" />
     </Window.Background>
@@ -21,7 +27,7 @@
                 <EventTrigger RoutedEvent="Image.Loaded">
                     <BeginStoryboard>
                         <Storyboard x:Name="ImageLoadStoryboard">
-                            <DoubleAnimation FillBehavior="Stop" Completed="ImageLoadedZoomIn_Completed" BeginTime="0:0:1" AccelerationRatio="1" Storyboard.TargetProperty="Width" From="0" To="{Binding DisplayedWidth}" Duration="0:0:0.5" />
+                            <DoubleAnimation FillBehavior="Stop" BeginTime="0:0:1" AccelerationRatio="1" Storyboard.TargetProperty="Width" From="0" To="{Binding DisplayedWidth}" Duration="0:0:0.5" />
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>

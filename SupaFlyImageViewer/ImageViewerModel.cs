@@ -11,7 +11,7 @@ using SupaFlyImageViewer.Annotations;
 
 namespace SupaFlyImageViewer
 {
-    public class ImageViewerModel : INotifyPropertyChanged
+    public class ImageViewerModel : INotifyPropertyChanged, IImageViewerModel
     {
         int displayedWidth;
         readonly MainWindowCommand zoomInCommand;
@@ -66,27 +66,5 @@ namespace SupaFlyImageViewer
         {
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
-    }
-
-    public class MainWindowCommand : ICommand
-    {
-        readonly Action action;
-
-        public MainWindowCommand(Action action)
-        {
-            this.action = action;
-        }
-
-        public bool CanExecute(object parameter)
-        {
-            return action != null;
-        }
-
-        public void Execute(object parameter)
-        {
-            action();
-        }
-
-        public event EventHandler CanExecuteChanged = delegate { };
     }
 }

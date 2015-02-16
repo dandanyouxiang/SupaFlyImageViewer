@@ -32,12 +32,5 @@ namespace SupaFlyImageViewer
         {
             Close();
         }
-
-        void ImageLoadedZoomIn_Completed(object sender, EventArgs e)
-        {
-            //var dataContext = (ImageViewerModel)DataContext;
-            //MainImage.Width = dataContext.DisplayedWidth;
-            //ImageLoadStoryboard.Remove(MainImage);
-        }
     }
 }

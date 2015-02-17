@@ -7,6 +7,7 @@ namespace SupaFlyImageViewer
     {
         string MyPath { get; }
         int DisplayedWidth { get; set; }
+        int ZoomWidth { get; set; }
         ICommand ZoomIn { get; }
         ICommand ZoomOut { get; }
         ICommand CloseApplication { get; }

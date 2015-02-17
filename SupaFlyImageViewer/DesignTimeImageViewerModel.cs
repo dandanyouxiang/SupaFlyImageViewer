@@ -15,6 +15,8 @@ namespace SupaFlyImageViewer
 
         public int DisplayedWidth { get; set; }
 
+        public int ZoomWidth { get; set; }
+
         public ICommand ZoomIn { get; private set; }
 
         public ICommand ZoomOut { get; private set; }

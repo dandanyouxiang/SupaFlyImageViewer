@@ -24,8 +24,6 @@ namespace SupaFlyImageViewer
         {
             InitializeComponent();
             //var args = Environment.GetCommandLineArgs();
-            //var uri = new Uri(@"D:\Dropbox\Pictures\Eye-Fi\1-26-2015\DSC00779.JPG");
-            //MainImage.Source = new BitmapImage(uri);
         }
 
         void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -35,7 +33,14 @@ namespace SupaFlyImageViewer
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            //Task.Delay()
+        }
 
+        // Should probably move this to model
+        private void DoubleAnimation_Completed(object sender, EventArgs e)
+        {
+            var context = (ImageViewerModel)DataContext;
+            context.DisplayedWidth = context.ZoomWidth;
         }
     }
 }

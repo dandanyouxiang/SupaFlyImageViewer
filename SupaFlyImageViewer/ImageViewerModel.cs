@@ -24,7 +24,7 @@ namespace SupaFlyImageViewer
             zoomOutCommand = new MainWindowCommand(() => DisplayedWidth -= 10);
             closeApplicationCommand = new MainWindowCommand(() => Application.Current.Shutdown());
 
-            DisplayedWidth = 800;
+            ZoomWidth = 1200;
         }
 
         public string MyPath
@@ -42,6 +42,8 @@ namespace SupaFlyImageViewer
                 OnPropertyChanged();
             }
         }
+
+        public int ZoomWidth { get; set; }
 
         public ICommand ZoomIn
         {

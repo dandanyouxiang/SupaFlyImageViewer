@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="SupaFly Image Viewer" Height="436" Width="627" WindowState="Maximized" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" 
-        Icon="ImageIcon.png">
+        Icon="ImageIcon.png" Loaded="Window_Loaded">
     <d:Window.DataContext>
         <local:DesignTimeImageViewerModel />
     </d:Window.DataContext>
@@ -22,12 +22,20 @@
         <KeyBinding Key="Escape" Command="{Binding CloseApplication}" />
     </Window.InputBindings>
     <Grid>
-        <Image Source="{Binding MyPath}" x:Name="MainImage" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding DisplayedWidth, Mode=TwoWay}">
+        <Image Source="{Binding MyPath}" x:Name="MainImage" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding DisplayedWidth}" >
+            <!--<Image.RenderTransformOrigin>
+                <Point X="0.5" Y="0.5" />
+            </Image.RenderTransformOrigin>
+            <Image.RenderTransform>
+                <ScaleTransform x:Name="MyAnimatedScaleTransform" ScaleX="1" ScaleY="1" CenterX="0.5" CenterY="0.5" />
+            </Image.RenderTransform>-->
             <Image.Triggers>
                 <EventTrigger RoutedEvent="Image.Loaded">
                     <BeginStoryboard>
                         <Storyboard x:Name="ImageLoadStoryboard">
-                            <DoubleAnimation FillBehavior="Stop" BeginTime="0:0:1" AccelerationRatio="1" Storyboard.TargetProperty="Width" From="0" To="{Binding DisplayedWidth}" Duration="0:0:0.5" />
+                            <DoubleAnimation FillBehavior="Stop" AccelerationRatio="1" Storyboard.TargetProperty="Width" From="0" To="{Binding DisplayedWidth}" Duration="0:0:1.5" />
+                            <!--<DoubleAnimation Storyboard.TargetName="MyAnimatedScaleTransform" Storyboard.TargetProperty="(ScaleTransform.ScaleX)" From="0" To="1.25" Duration="0:0:1" />
+                            <DoubleAnimation Storyboard.TargetName="MyAnimatedScaleTransform" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" From="0" To="1.25" Duration="0:0:1" />-->
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>

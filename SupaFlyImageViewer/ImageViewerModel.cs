@@ -32,7 +32,6 @@ namespace SupaFlyImageViewer
             get { return @"D:\Dropbox\Pictures\Eye-Fi\1-26-2015\DSC00779.JPG"; }
         }
 
-
         // Todo: get actual width of photo. (Need to set a max width depending on monitor size.)
         public int DisplayedWidth
         {

@@ -23,14 +23,19 @@ namespace SupaFlyImageViewer
         public MainWindow()
         {
             InitializeComponent();
-            var args = Environment.GetCommandLineArgs();
-            var uri = new Uri(@"D:\Dropbox\Pictures\Eye-Fi\1-26-2015\DSC00779.JPG");
-            MainImage.Source = new BitmapImage(uri);
+            //var args = Environment.GetCommandLineArgs();
+            //var uri = new Uri(@"D:\Dropbox\Pictures\Eye-Fi\1-26-2015\DSC00779.JPG");
+            //MainImage.Source = new BitmapImage(uri);
         }
 
         void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             Close();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

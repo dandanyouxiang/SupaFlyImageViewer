@@ -33,7 +33,7 @@
                 <EventTrigger RoutedEvent="Image.Loaded">
                     <BeginStoryboard>
                         <Storyboard x:Name="ImageLoadStoryboard">
-                            <DoubleAnimation FillBehavior="Stop" AccelerationRatio="1" Storyboard.TargetProperty="Width" From="0" To="{Binding ZoomWidth}" Duration="0:0:1.5" Completed="DoubleAnimation_Completed" />
+                            <DoubleAnimation FillBehavior="Stop" BeginTime="0:0:1" AccelerationRatio="1" Storyboard.TargetProperty="Width" From="0" To="{Binding ZoomWidth}" Duration="0:0:0.5" Completed="DoubleAnimation_Completed" />
                             <!--<DoubleAnimation Storyboard.TargetName="MyAnimatedScaleTransform" Storyboard.TargetProperty="(ScaleTransform.ScaleX)" From="0" To="1.25" Duration="0:0:1" />
                             <DoubleAnimation Storyboard.TargetName="MyAnimatedScaleTransform" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" From="0" To="1.25" Duration="0:0:1" />-->
                         </Storyboard>

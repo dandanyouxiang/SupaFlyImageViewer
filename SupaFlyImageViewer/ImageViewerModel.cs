@@ -60,6 +60,8 @@ namespace SupaFlyImageViewer
             get { return closeApplicationCommand; }
         }
 
+        public bool IsApplicationClosing { get; private set; }
+
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
         [NotifyPropertyChangedInvocator]

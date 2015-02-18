@@ -23,6 +23,8 @@ namespace SupaFlyImageViewer
 
         public ICommand CloseApplication { get; private set; }
 
+        public bool IsApplicationClosing { get; private set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }

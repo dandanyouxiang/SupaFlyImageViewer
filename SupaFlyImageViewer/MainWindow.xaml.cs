@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -20,6 +22,8 @@ namespace SupaFlyImageViewer
     /// </summary>
     public partial class MainWindow
     {
+        bool isReadyToClose;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -31,16 +35,27 @@ namespace SupaFlyImageViewer
             Close();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            //Task.Delay()
-        }
-
         // Should probably move this to model
-        private void DoubleAnimation_Completed(object sender, EventArgs e)
+        private void ImageLoadStoryboardAnimation_Completed(object sender, EventArgs e)
         {
             var context = (ImageViewerModel)DataContext;
             context.DisplayedWidth = context.ZoomWidth;
+        }
+
+        void ImageUnloadStoryboardAnimation_Completed(object sender, EventArgs e)
+        {
+            isReadyToClose = true;
+            Close();
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            if (isReadyToClose)
+                return;
+
+            e.Cancel = true;
+            var imageUnloadStoryboard = (Storyboard)MainImage.FindResource("ImageUnloadStoryboard");
+            imageUnloadStoryboard.Begin(MainImage);
         }
     }
 }

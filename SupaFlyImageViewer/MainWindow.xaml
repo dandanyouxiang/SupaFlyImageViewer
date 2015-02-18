@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="SupaFly Image Viewer" Height="436" Width="627" WindowState="Maximized" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" 
-        Icon="ImageIcon.png" Loaded="Window_Loaded">
+        Icon="ImageIcon.png" Closing="Window_Closing">
     <d:Window.DataContext>
         <local:DesignTimeImageViewerModel />
     </d:Window.DataContext>
@@ -23,21 +23,18 @@
     </Window.InputBindings>
     <Grid>
         <Image Source="{Binding MyPath}" x:Name="MainImage" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding DisplayedWidth}" >
-            <!--<Image.RenderTransformOrigin>
-                <Point X="0.5" Y="0.5" />
-            </Image.RenderTransformOrigin>
-            <Image.RenderTransform>
-                <ScaleTransform x:Name="MyAnimatedScaleTransform" ScaleX="1" ScaleY="1" CenterX="0.5" CenterY="0.5" />
-            </Image.RenderTransform>-->
+            <Image.Resources>
+                <Storyboard x:Key="ImageLoadStoryboard">
+                    <DoubleAnimation FillBehavior="Stop" BeginTime="0:0:1" AccelerationRatio="1" Storyboard.TargetProperty="Width" From="0" To="{Binding ZoomWidth}" Duration="0:0:0.5" Completed="ImageLoadStoryboardAnimation_Completed" />
+                </Storyboard>
+                <!-- ImageUnloadStoryboard is used in the code behind -->
+                <Storyboard x:Key="ImageUnloadStoryboard">
+                    <DoubleAnimation Storyboard.TargetProperty="Width" From="{Binding DisplayedWidth}" To="0" Duration="0:0:0.5" Completed="ImageUnloadStoryboardAnimation_Completed" />
+                </Storyboard>
+            </Image.Resources>
             <Image.Triggers>
                 <EventTrigger RoutedEvent="Image.Loaded">
-                    <BeginStoryboard>
-                        <Storyboard x:Name="ImageLoadStoryboard">
-                            <DoubleAnimation FillBehavior="Stop" BeginTime="0:0:1" AccelerationRatio="1" Storyboard.TargetProperty="Width" From="0" To="{Binding ZoomWidth}" Duration="0:0:0.5" Completed="DoubleAnimation_Completed" />
-                            <!--<DoubleAnimation Storyboard.TargetName="MyAnimatedScaleTransform" Storyboard.TargetProperty="(ScaleTransform.ScaleX)" From="0" To="1.25" Duration="0:0:1" />
-                            <DoubleAnimation Storyboard.TargetName="MyAnimatedScaleTransform" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" From="0" To="1.25" Duration="0:0:1" />-->
-                        </Storyboard>
-                    </BeginStoryboard>
+                    <BeginStoryboard Storyboard="{StaticResource ImageLoadStoryboard}" />
                 </EventTrigger>
             </Image.Triggers>
         </Image>

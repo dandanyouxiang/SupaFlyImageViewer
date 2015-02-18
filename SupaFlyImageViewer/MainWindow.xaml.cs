@@ -35,7 +35,6 @@ namespace SupaFlyImageViewer
             Close();
         }
 
-        // Should probably move this to model
         private void ImageLoadStoryboardAnimation_Completed(object sender, EventArgs e)
         {
             var context = (ImageViewerModel)DataContext;

@@ -17,11 +17,13 @@ namespace SupaFlyImageViewer
         readonly MainWindowCommand zoomInCommand;
         readonly MainWindowCommand zoomOutCommand;
         readonly MainWindowCommand closeApplicationCommand;
+        readonly MainWindowCommand imageLoadCompletedCommand;
 
         public ImageViewerModel()
         {
             zoomInCommand = new MainWindowCommand(() => DisplayedWidth += 10);
             zoomOutCommand = new MainWindowCommand(() => DisplayedWidth -= 10);
+            imageLoadCompletedCommand = new MainWindowCommand(() => DisplayedWidth = ZoomWidth);
             closeApplicationCommand = new MainWindowCommand(() => Application.Current.Shutdown());
 
             ZoomWidth = 1200;
@@ -60,7 +62,10 @@ namespace SupaFlyImageViewer
             get { return closeApplicationCommand; }
         }
 
-        public bool IsApplicationClosing { get; private set; }
+        public ICommand ImageLoadCompleted
+        {
+            get { return imageLoadCompletedCommand; }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 

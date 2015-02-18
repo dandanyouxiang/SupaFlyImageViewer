@@ -5,7 +5,7 @@ using SupaFlyImageViewer;
 namespace SupaFlyImageViewerTests
 {
     [TestClass]
-    public class UnitTest1
+    public class ImageViewerModelTests
     {
         [TestMethod]
         public void TestMethod1()

@@ -11,7 +11,6 @@ namespace SupaFlyImageViewer
         ICommand ZoomIn { get; }
         ICommand ZoomOut { get; }
         ICommand CloseApplication { get; }
-        bool IsApplicationClosing { get; }
         event PropertyChangedEventHandler PropertyChanged;
     }
 }

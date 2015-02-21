@@ -21,18 +21,20 @@ namespace SupaFlyImageViewer
 
         public ImageViewerModel()
         {
-            zoomInCommand = new MainWindowCommand(() => DisplayedWidth += 10);
-            zoomOutCommand = new MainWindowCommand(() => DisplayedWidth -= 10);
+            var options = new Options();
+            if (CommandLine.Parser.Default.ParseArguments(Environment.GetCommandLineArgs(), options))
+                MyPath = options.ImageFilePath;
+            // todo: else, display a broken image icon?
+
+            zoomInCommand = new MainWindowCommand(IncrementWidth);
+            zoomOutCommand = new MainWindowCommand(DecrementWidth);
             imageLoadCompletedCommand = new MainWindowCommand(() => DisplayedWidth = ZoomWidth);
             closeApplicationCommand = new MainWindowCommand(() => Application.Current.MainWindow.Close());
 
             ZoomWidth = 1200;
         }
 
-        public string MyPath
-        {
-            get { return @"D:\Dropbox\Pictures\Eye-Fi\1-26-2015\DSC00779.JPG"; }
-        }
+        public string MyPath { get; private set; }
 
         // Todo: get actual width of photo. (Need to set a max width depending on monitor size.)
         public int DisplayedWidth
@@ -62,6 +64,7 @@ namespace SupaFlyImageViewer
             get { return closeApplicationCommand; }
         }
 
+        // todo: Get out of code behind - maybe after using that mvvm framework?
         public ICommand ImageLoadCompleted
         {
             get { return imageLoadCompletedCommand; }
@@ -73,6 +76,18 @@ namespace SupaFlyImageViewer
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        void IncrementWidth()
+        {
+            // if (size is not already at max)...
+            DisplayedWidth += 10;
+        }
+
+        void DecrementWidth()
+        {
+            // if (size is not already at zero)...
+            DisplayedWidth -= 10;
         }
     }
 }

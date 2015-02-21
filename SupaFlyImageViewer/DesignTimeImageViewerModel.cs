@@ -8,7 +8,7 @@ namespace SupaFlyImageViewer
         public DesignTimeImageViewerModel()
         {
             MyPath = @"D:\Dropbox\Pictures\Eye-Fi\1-26-2015\DSC00779.JPG";
-            DisplayedWidth = 400;
+            DisplayedWidth = 200;
         }
 
         public string MyPath { get; private set; }

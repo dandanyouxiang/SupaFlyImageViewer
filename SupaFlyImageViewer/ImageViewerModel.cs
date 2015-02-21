@@ -24,7 +24,7 @@ namespace SupaFlyImageViewer
             zoomInCommand = new MainWindowCommand(() => DisplayedWidth += 10);
             zoomOutCommand = new MainWindowCommand(() => DisplayedWidth -= 10);
             imageLoadCompletedCommand = new MainWindowCommand(() => DisplayedWidth = ZoomWidth);
-            closeApplicationCommand = new MainWindowCommand(() => Application.Current.Shutdown());
+            closeApplicationCommand = new MainWindowCommand(() => Application.Current.MainWindow.Close());
 
             ZoomWidth = 1200;
         }

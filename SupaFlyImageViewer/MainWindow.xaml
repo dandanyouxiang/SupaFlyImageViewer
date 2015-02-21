@@ -22,6 +22,28 @@
         <KeyBinding Key="Escape" Command="{Binding CloseApplication}" />
     </Window.InputBindings>
     <Grid>
+        <Grid.Resources>
+            <Style TargetType="{x:Type Image}" x:Key="NavigationImage">
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="Opacity" Value="0.25"></Setter>
+                <Style.Triggers>
+                    <EventTrigger RoutedEvent="Image.MouseEnter">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.5"></DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="Image.MouseLeave">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.25" Duration="0:0:0.5"></DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
         <Image Source="{Binding MyPath}" x:Name="MainImage" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding DisplayedWidth}" >
             <Image.Resources>
                 <Storyboard x:Key="ImageLoadStoryboard">
@@ -57,6 +79,17 @@
                 </EventTrigger>
             </Image.Triggers>
         </Image>
-        <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="300,0,283,10" Content="{Binding DisplayedWidth}" FontFamily="Verdana" FontSize="18" Foreground="White" RenderTransformOrigin="1.023,0.469"></Label>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="300,0,283,10" Content="{Binding DisplayedWidth}" FontFamily="Verdana" FontSize="18" Foreground="White"></Label>
+        <Image Style="{StaticResource NavigationImage}" Source="Navigate.png" HorizontalAlignment="Right" VerticalAlignment="Center" Height="64" Width="64" Margin="0,0,50,0"/>
+        <Image Style="{StaticResource NavigationImage}" Source="Navigate.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="64" Width="64" Margin="50,0,0,0" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                    <SkewTransform AngleY="0" AngleX="0"/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
     </Grid>
 </Window>

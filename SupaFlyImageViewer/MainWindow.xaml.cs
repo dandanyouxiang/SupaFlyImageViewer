@@ -35,7 +35,7 @@ namespace SupaFlyImageViewer
             Close();
         }
 
-        private void ImageLoadStoryboardAnimation_Completed(object sender, EventArgs e)
+        void ImageLoadStoryboardAnimation_Completed(object sender, EventArgs e)
         {
             var context = (ImageViewerModel)DataContext;
             context.DisplayedWidth = context.ZoomWidth;
@@ -47,7 +47,7 @@ namespace SupaFlyImageViewer
             Close();
         }
 
-        private void Window_Closing(object sender, CancelEventArgs e)
+        void Window_Closing(object sender, CancelEventArgs e)
         {
             if (isReadyToClose)
                 return;
